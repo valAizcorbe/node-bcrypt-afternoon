@@ -4,6 +4,7 @@ const session = require("express-session");
 const massive = require("massive");
 const authCtrl = require("./controllers/authController");
 const treasureCtrl = require("./controllers/treasureController");
+const auth = require("./middleware/authmiddleware");
 const { CONNECTION_STRING, SESSION_SECRET } = process.env;
 const app = express();
 const port = 4000;
@@ -28,5 +29,6 @@ app.post("/auth/login", authCtrl.login);
 app.get("/auth/logout", authCtrl.logout);
 
 app.get("/api/treasure/dragon", treasureCtrl.dragonTreasure);
-app.get("/api/treasure/user", treasureCtrl.getUserTreasure);
+app.get("/api/treasure/user", auth.userOnly, treasureCtrl.getUserTreasure);
+
 app.listen(port, () => console.log(`Server listening on ${port}`));
