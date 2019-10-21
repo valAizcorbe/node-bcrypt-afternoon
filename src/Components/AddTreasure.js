@@ -22,8 +22,9 @@ export default class AddTreasure extends Component {
         this.props.addMyTreasure(res.data);
         this.setState({ treasureURL: "" });
       })
-      .catch(err => {
-        alert(err.response.request.response);
+      .catch(error => {
+        console.log(error);
+        alert(error.response.request.response);
       });
   }
 
