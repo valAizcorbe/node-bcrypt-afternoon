@@ -49,7 +49,7 @@ export default class Container extends Component {
           }
         });
       })
-      .catch(err => alert(err.res.req.res));
+      .catch(err => alert(err.response.request.response));
   }
 
   addMyTreasure(newMyTreasure) {
